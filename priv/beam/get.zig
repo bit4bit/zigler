@@ -767,6 +767,7 @@ inline fn error_expected(comptime T: type, opts: anytype) void {
     // it's not entirely obvious why, but this needs to be put into a comptime block
     // to avoid a memory aliasing bug that exists in ziglang. (0.10.0)
     const typespec = comptime ts: {
+        @setEvalBranchQuota(50_000);
         break :ts typespec_for(T);
     };
 
